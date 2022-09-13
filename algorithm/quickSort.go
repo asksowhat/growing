@@ -6,12 +6,12 @@ func quickSort(arr []int, left int, right int) {
     if left >= right {
         return
     }
-    povit := paritition(arr, left, right)
+    povit := partition(arr, left, right)
     quickSort(arr, left, povit-1)
     quickSort(arr, povit+1, right)
 }
 
-func paritition(arr []int, left int, right int) int {
+func partition(arr []int, left int, right int) int {
         povit := arr[left]
 
         for left < right {
