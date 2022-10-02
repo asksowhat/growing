@@ -6,31 +6,30 @@ func quickSort(arr []int, left int, right int) {
     if left >= right {
         return
     }
-    povit := partition(arr, left, right)
-    quickSort(arr, left, povit-1)
-    quickSort(arr, povit+1, right)
-}
 
-func partition(arr []int, left int, right int) int {
-        povit := arr[left]
+    povit := arr[left]
+    i, j := left, right
 
-        for left < right {
-            for left < right && arr[right] >= povit {
-                right--
-            }
-            arr[left] = arr[right]
-
-            for left < right {
-                left++
-            }
-            arr[right] = arr[left]
+    for i < j {
+        for i < j && arr[j] >= povit {
+            j--
         }
-        arr[left] = povit
-        return left
+        arr[i] = arr[j]
+
+        for i < j && arr[i] <= povit {
+            i++
+        }
+        arr[j] = arr[i]
+    }
+    arr[i] = povit
+
+    quickSort(arr, left, i-1)
+    quickSort(arr, i+1, right)
 }
 
 func main() {
-    arr := []int{5,2,1,4,3}
+    arr := []int{4,2,5,1,3}
     quickSort(arr, 0, len(arr)-1)
     fmt.Println(arr)
+
 }
